@@ -1,39 +1,25 @@
 package zoo.animals;
 
-public class Animal {
+import zoo.food.Food;
+import zoo.food.Grass;
+import zoo.food.Meat;
 
-    protected String name;
-    protected String species;
-    protected boolean run;
-    protected boolean swim;
-    protected boolean fly;
-    protected String voice;
-    protected int satiety;
+public abstract class Animal {
 
-    public Animal(String name, String species, boolean run, boolean swim, boolean fly, String voice, int satiety){
+    public String name;
+    public int satiety;
+
+
+    public Animal(String name, int satiety) {
         this.name = name;
-        this.species = species;
-        this.run = run;
-        this.swim = swim;
-        this.fly = fly;
-        this.voice = voice;
         this.satiety = satiety;
     }
 
-    public void printInfo(){
-        System.out.println(this);
+    public void eat(Food food){
+        if (food instanceof Grass)
+            System.out.println(name + " съел еду");
+        if (food instanceof Meat)
+            System.out.println(name + " не ест такую еду.");
     }
 
-    @Override
-    public String toString() {
-        return "Animal{" +
-                "name='" + name + '\'' +
-                ", species='" + species + '\'' +
-                ", run=" + run +
-                ", swim=" + swim +
-                ", fly=" + fly +
-                ", voice='" + voice + '\'' +
-                ", satiety=" + satiety +
-                '}';
-    }
 }

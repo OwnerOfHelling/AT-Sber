@@ -1,33 +1,33 @@
 package zoo.animals;
 
-public class Duck extends Animal implements Fly, Run, Swim, Voice{
+public class Duck extends Herbivore implements Fly, Run, Swim, Voice {
 
-    public Duck(String name, String species, boolean run, boolean swim, boolean fly, String voice, int satiety) {
-        super(name, species, run, swim, fly, voice, satiety);
+    public Duck() {
+        super("Селезень", 3);
     }
 
-    public Duck(){
-        super("Duck", "Travoed", true, true, true, "Kria-kria", 5);
+    public String getName() {
+        return name;
     }
 
     @Override
     public void fly() {
+        System.out.println(getName() + " улетает.");
     }
 
     @Override
     public void swim() {
+        System.out.println(getName() + " плывет к берегу.");
     }
 
     @Override
     public void run() {
+        System.out.println(getName() + " берет разгон.");
     }
 
     @Override
     public void voice() {
+        System.out.println(getName() + " кря-кря на выдру");
     }
 
-    @Override
-    public String strVoice() {
-        return "Kria-kria";
-    }
 }
