@@ -1,6 +1,8 @@
 package zoo.animals;
 
-public class Fish extends Carnivorous implements Swim {
+import zoo.food.Food;
+
+public class Fish extends Herbivore implements Swim {
 
     public Fish() {
         super("Карась", 3);
@@ -15,4 +17,5 @@ public class Fish extends Carnivorous implements Swim {
     public void run() {
 
     }
+
 }

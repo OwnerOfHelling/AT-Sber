@@ -1,8 +1,9 @@
 package zoo.animals;
 
 import zoo.food.Food;
-import zoo.food.Grass;
-import zoo.food.Meat;
+
+
+import java.util.Objects;
 
 public abstract class Animal {
 
@@ -15,11 +16,32 @@ public abstract class Animal {
         this.satiety = satiety;
     }
 
-    public void eat(Food food){
-        if (food instanceof Grass)
-            System.out.println(name + " съел еду");
-        if (food instanceof Meat)
-            System.out.println(name + " не ест такую еду.");
+    protected abstract boolean foodAccepted(Food food);
+
+    public void eat(Food food) throws WrongFoodException {
+        if (satiety < 4) {
+            System.out.println(name + " ест " + food + ", сытость увеличилась на " + (satiety++));
+        } else throw new WrongFoodException(name + " не ест " + food);
+
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Animal animal = (Animal) o;
+        return name.equals(animal.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    public static class WrongFoodException extends Exception {
+
+        public WrongFoodException(String message) {
+            super(message);
+        }
+    }
 }

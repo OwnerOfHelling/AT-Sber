@@ -1,5 +1,8 @@
 package zoo.animals;
 
+
+import zoo.food.Food;
+
 public class Otter extends Carnivorous implements Run, Swim, Voice{
 
     public Otter(){
@@ -17,7 +20,7 @@ public class Otter extends Carnivorous implements Run, Swim, Voice{
 
     @Override
     public void swim() {
-        System.out.println(getName() + " плавает вокруг утки.");
+        System.out.println(getName() + " плавает вокруг селезьня.");
     }
 
     @Override

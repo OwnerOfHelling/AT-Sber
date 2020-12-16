@@ -8,8 +8,13 @@ public class Worker {
     public Worker() {
     }
 
-    void feed(Animal animal, Food food) {
-    animal.eat(food);
+    void feed(Animal animal, Food food){
+        try {
+            animal.eat(food);
+        } catch (Animal.WrongFoodException e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     void getVoice(Voice animal) {
