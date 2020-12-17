@@ -16,6 +16,10 @@ public abstract class Animal {
         this.satiety = satiety;
     }
 
+    public String getName() {
+        return name;
+    }
+
     protected abstract boolean foodAccepted(Food food);
 
     public void eat(Food food) throws WrongFoodException {

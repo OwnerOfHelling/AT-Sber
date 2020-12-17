@@ -1,15 +1,18 @@
 package zoo;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import zoo.animals.*;
 import zoo.food.Grass;
 import zoo.food.Meat;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Zoo {
+
+    static final Logger LOG = LogManager.getLogger(Zoo.class.getName());
 
     public static void main(String[] args) {
 
@@ -31,18 +34,18 @@ public class Zoo {
         zoo.put(lion.getName(), lion);
         zoo.put(wolf.getName(), wolf);
 
-        List<Swim> lake = Arrays.asList(otter, fish, duck, lion, wolf);
-        for (Swim animal : lake) {
-            animal.swim();
-        }
-        List<Run> earth = Arrays.asList(duck, otter, lion, wolf);
-        for (Run animal : earth) {
-            animal.run();
-        }
-        List<Fly> sky = Arrays.asList(duck);
-        for (Fly animal : sky) {
-            animal.fly();
-        }
+        Aviary<Herbivore> herbivoreAviary = new Aviary<>(2);
+        Aviary<Carnivorous> carnivorousAviary = new Aviary<>(2);
+
+        herbivoreAviary.addAnimal(duck);
+        herbivoreAviary.addAnimal(fish);
+        carnivorousAviary.addAnimal(lion);
+        carnivorousAviary.addAnimal(wolf);
+        carnivorousAviary.addAnimal(otter);
+        carnivorousAviary.deleteAnimal("Акелла");
+        carnivorousAviary.getAnimal("Выдра");
+        herbivoreAviary.getAnimal("Карась");
+
 
         worker.feed(duck, grass);
         worker.feed(duck, meat);
@@ -60,12 +63,14 @@ public class Zoo {
         worker.feed(lion, meat);
         worker.feed(lion, grass);
         worker.getVoice(lion);
-        worker.feed(lion, meat);
         lion.run();
         worker.feed(wolf, grass);
         worker.getVoice(wolf);
         worker.feed(wolf, meat);
         wolf.run();
+
+        LOG.atLevel(Level.ERROR);
+
     }
 
 
